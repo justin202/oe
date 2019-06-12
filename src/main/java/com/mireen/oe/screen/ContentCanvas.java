@@ -5,23 +5,24 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.Date;
 
-import com.mireen.oe.plants.Plant;
-import com.mireen.oe.plants.PlantUtils;
-import com.mireen.oe.utils.CommonUtils;
+import com.mireen.oe.utils.StageUtil;
 
 public class ContentCanvas extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = -5968928181937806294L;
 	
+	private StageUtil stageUtil;
+	
 	// create a buffered image which matches the screen
 	private BufferedImage bufferedImage = new BufferedImage(ScreenUtils.WIDTH, ScreenUtils.HEIGHT, BufferedImage.TYPE_INT_RGB);
 
-	public ContentCanvas() {
+	public ContentCanvas(StageUtil stageUtil) {
 		// set Dimension for the canvas
 		setPreferredSize(ScreenUtils.DIM);
 		setBackground(Color.WHITE);
+		
+		this.stageUtil = stageUtil;
 	}
 
 	/**
@@ -41,17 +42,14 @@ public class ContentCanvas extends Canvas implements Runnable {
 		// get graphic of buffered image
 		Graphics bufferedImageGraphic = bufferedImage.getGraphics();
 
-		// before drawing, clear
+		// ******************** render ********************
+		// before drawing, clear screen
 		bufferedImageGraphic.clearRect(0, 0, ScreenUtils.WIDTH, ScreenUtils.HEIGHT);
-		// draw the shapes to bufferedImage
-		for(Plant plant : PlantUtils.plants) {
-			bufferedImageGraphic.setColor(plant.color);
-			bufferedImageGraphic.fillOval(plant.location.x, plant.location.y, plant.radius, plant.radius);
-			bufferedImageGraphic.drawString(plant.name, plant.location.x, plant.location.y);
-		}
-		
+		// draw the shapes to bufferedImage, by invoking the render method in the stageUtil
+		stageUtil.render(bufferedImageGraphic);
 		// draw the bufferedImage
 		bufferStrategyGraphic.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), null);
+		// ******************** render ********************
 		
 		// dispose the graphics
 		bufferedImageGraphic.dispose();
@@ -65,11 +63,10 @@ public class ContentCanvas extends Canvas implements Runnable {
 	 * update
 	 */
 	private void update() {
-		for(Plant plant : PlantUtils.plants)
-			plant.update();
+		stageUtil.update();
 	}
 
-	private static final int DEFAULT_FPS = 30;
+	private static final int DEFAULT_FPS = 60;
 	// 1ms = 1000000ns
 	private static final int MS_TO_NS = 1000000;
 	// frame per second, update per second

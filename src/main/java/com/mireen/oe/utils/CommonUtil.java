@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 
-public class CommonUtils {
+public class CommonUtil {
 	
 	private static Random random = new Random();
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
