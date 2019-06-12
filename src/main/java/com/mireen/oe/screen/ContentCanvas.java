@@ -5,11 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.Date;
 
 import com.mireen.oe.plants.Plant;
 import com.mireen.oe.plants.PlantUtils;
-import com.mireen.oe.utils.CommonUtils;
 
 public class ContentCanvas extends Canvas implements Runnable {
 
