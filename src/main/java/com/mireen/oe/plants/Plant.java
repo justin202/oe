@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import com.mireen.oe.screen.ScreenUtils;
-import com.mireen.oe.utils.CommonUtils;
+import com.mireen.oe.utils.CommonUtil;
 
 public class Plant {
 	
@@ -16,13 +16,13 @@ public class Plant {
 	public int mass;
 	
 	public Plant() {
-		this.radius = CommonUtils.getRandomNumber(10, 100);
-		this.location = new Point(CommonUtils.getRandomNumber(0, ScreenUtils.WIDTH - radius), CommonUtils.getRandomNumber(0, ScreenUtils.HEIGHT - radius));
+		this.radius = CommonUtil.getRandomNumber(10, 100);
+		this.location = new Point(CommonUtil.getRandomNumber(0, ScreenUtils.WIDTH - radius), CommonUtil.getRandomNumber(0, ScreenUtils.HEIGHT - radius));
 		// check whether there is overlap
 		checkOverLap();
-		this.color = CommonUtils.getRandomColor();
-		this.name = CommonUtils.getRandomName();
-		this.mass = CommonUtils.getRandomNumber(1, Integer.MAX_VALUE);
+		this.color = CommonUtil.getRandomColor();
+		this.name = CommonUtil.getRandomName();
+		this.mass = CommonUtil.getRandomNumber(1, Integer.MAX_VALUE);
 		System.out.println(this);
 	}
 
@@ -30,13 +30,13 @@ public class Plant {
 	 * check whether there is overlap
 	 */
 	private void checkOverLap() {
-		boolean check = PlantUtils.plants.size() != 0;
+		boolean check = PlantStageUtil.plants.size() != 0;
 		while(check) {
-			for(Plant plant : PlantUtils.plants) {
+			for(Plant plant : PlantStageUtil.plants) {
 				Rectangle plantRect = new Rectangle(plant.location.x, plant.location.y, plant.radius, plant.radius);
 				Rectangle rect = new Rectangle(this.location.x, this.location.y, this.radius, this.radius);
 				if(rect.intersects(plantRect)) {
-					this.location = new Point(CommonUtils.getRandomNumber(radius, ScreenUtils.WIDTH - radius), CommonUtils.getRandomNumber(radius, ScreenUtils.HEIGHT - radius));
+					this.location = new Point(CommonUtil.getRandomNumber(radius, ScreenUtils.WIDTH - radius), CommonUtil.getRandomNumber(radius, ScreenUtils.HEIGHT - radius));
 					check = true;
 					break;
 				}else
