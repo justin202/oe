@@ -5,17 +5,24 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
+import com.mireen.oe.input.Keyboard;
 import com.mireen.oe.utils.StageUtil;
 
 public class ContentCanvas extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = -5968928181937806294L;
 	
-	private StageUtil stageUtil;
-	
 	// create a buffered image which matches the screen
 	private BufferedImage bufferedImage = new BufferedImage(ScreenUtils.WIDTH, ScreenUtils.HEIGHT, BufferedImage.TYPE_INT_RGB);
+	// the pixels in the buffered image
+	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData();
+
+	// stage util: rendering and updating stage
+	private StageUtil stageUtil;
+	// input
+	private Keyboard keyboard; 
 
 	public ContentCanvas(StageUtil stageUtil) {
 		// set Dimension for the canvas
@@ -23,6 +30,10 @@ public class ContentCanvas extends Canvas implements Runnable {
 		setBackground(Color.WHITE);
 		
 		this.stageUtil = stageUtil;
+		
+		this.keyboard = new Keyboard();
+		addKeyListener(keyboard);
+		this.stageUtil.setKeyboard(keyboard);
 	}
 
 	/**
@@ -44,7 +55,7 @@ public class ContentCanvas extends Canvas implements Runnable {
 
 		// ******************** render ********************
 		// before drawing, clear screen
-		bufferedImageGraphic.clearRect(0, 0, ScreenUtils.WIDTH, ScreenUtils.HEIGHT);
+		clear();
 		// draw the shapes to bufferedImage, by invoking the render method in the stageUtil
 		stageUtil.render(bufferedImageGraphic);
 		// draw the bufferedImage
@@ -63,7 +74,17 @@ public class ContentCanvas extends Canvas implements Runnable {
 	 * update
 	 */
 	private void update() {
+		// get current key state
+		keyboard.update();
 		stageUtil.update();
+	}
+	
+	/**
+	 * clear screen
+	 * @param graphics
+	 */
+	private void clear() {
+		for(int i = 0; i < pixels.length; pixels[i++] = 0xffffff);
 	}
 
 	private static final int DEFAULT_FPS = 60;

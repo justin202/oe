@@ -2,7 +2,7 @@ package com.mireen.oe.screen;
 
 import javax.swing.JFrame;
 
-import com.mireen.oe.plants.PlantStageUtil;
+import com.mireen.oe.tilebattle.Battleground;
 
 /**
  * Assemble every components in here
@@ -22,11 +22,13 @@ public class MainGround {
 	public MainGround() {
 		frame = new JFrame();
 		
-		// create plant stage
-		PlantStageUtil plantStageUtil = new PlantStageUtil(2);
-		
-		// create canvas using the plant stage
-		ContentCanvas contentCanvas = new ContentCanvas(plantStageUtil);
+//		// create plant stage
+//		PlantStageUtil plantStageUtil = new PlantStageUtil(2);
+//		
+//		// create canvas using the plant stage
+//		ContentCanvas contentCanvas = new ContentCanvas(plantStageUtil);
+		Battleground battleground = new Battleground();
+		ContentCanvas contentCanvas = new ContentCanvas(battleground);
 		
 		// add canvas to frame
 		frame.add(contentCanvas);
