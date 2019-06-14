@@ -1,8 +1,10 @@
 package com.mireen.oe.screen;
 
+import java.awt.Point;
+
 import javax.swing.JFrame;
 
-import com.mireen.oe.tilebattle.Battleground;
+import com.mireen.oe.tilebattle.TileSoldier;
 
 /**
  * Assemble every components in here
@@ -27,8 +29,10 @@ public class MainGround {
 //		
 //		// create canvas using the plant stage
 //		ContentCanvas contentCanvas = new ContentCanvas(plantStageUtil);
-		Battleground battleground = new Battleground();
-		ContentCanvas contentCanvas = new ContentCanvas(battleground);
+//		Battleground battleground = new Battleground();
+//		ContentCanvas contentCanvas = new ContentCanvas(battleground);
+		TileSoldier tileSoldier = new TileSoldier("/images/roman-toga.png", new Point(480, 480), 48);
+		ContentCanvas contentCanvas = new ContentCanvas(tileSoldier);
 		
 		// add canvas to frame
 		frame.add(contentCanvas);

@@ -108,6 +108,9 @@ public class ContentCanvas extends Canvas implements Runnable {
 		// 每次绘制图像耗时（毫秒）
 		long total = 0;
 		
+		// 获取焦点
+		requestFocus();
+		
 		while (true) {
 			now = System.nanoTime();
 			
