@@ -7,14 +7,20 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.mireen.oe.utils.StageUtil;
+import com.mireen.oe.basic.Actor;
 
-public class TileSoldier extends StageUtil {
+public class TileSoldier extends Actor {
 	
 	private BufferedImage image;
 	private Point position;
 	private int size;
 	
+	/**
+	 * 
+	 * @param path		the image path
+	 * @param position	the initial position of the soldier
+	 * @param size		the dimension of the soldier
+	 */
 	public TileSoldier(String path, Point position, int size) {
 		try {
 			image = ImageIO.read(TileSoldier.class.getResource(path));

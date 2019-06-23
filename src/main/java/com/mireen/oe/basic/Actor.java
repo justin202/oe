@@ -1,16 +1,10 @@
-package com.mireen.oe.utils;
+package com.mireen.oe.basic;
 
 import java.awt.Graphics;
 
 import com.mireen.oe.input.Keyboard;
 
-/**
- * the super class of all kind of stage
- * @author hqs
- * @Date 2019年6月12日
- *
- */
-public abstract class StageUtil {
+public class Actor {
 	
 	protected Keyboard keyboard;
 	

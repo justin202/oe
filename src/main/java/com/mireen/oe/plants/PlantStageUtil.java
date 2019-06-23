@@ -4,9 +4,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mireen.oe.utils.StageUtil;
+import com.mireen.oe.basic.Stage;
 
-public class PlantStageUtil extends StageUtil {
+public class PlantStageUtil extends Stage {
 	
 	/** plant list */
 	public static List<Plant> plants = new ArrayList<Plant>();

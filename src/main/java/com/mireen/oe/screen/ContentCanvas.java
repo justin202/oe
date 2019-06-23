@@ -7,8 +7,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+import com.mireen.oe.basic.Scene;
 import com.mireen.oe.input.Keyboard;
-import com.mireen.oe.utils.StageUtil;
 
 public class ContentCanvas extends Canvas implements Runnable {
 
@@ -20,20 +20,20 @@ public class ContentCanvas extends Canvas implements Runnable {
 	private int[] pixels = ((DataBufferInt) bufferedImage.getRaster().getDataBuffer()).getData();
 
 	// stage util: rendering and updating stage
-	private StageUtil stageUtil;
+	private Scene scence;
 	// input
 	private Keyboard keyboard; 
 
-	public ContentCanvas(StageUtil stageUtil) {
+	public ContentCanvas(Scene scence) {
 		// set Dimension for the canvas
 		setPreferredSize(ScreenUtils.DIM);
 		setBackground(Color.WHITE);
 		
-		this.stageUtil = stageUtil;
-		
 		this.keyboard = new Keyboard();
 		addKeyListener(keyboard);
-		this.stageUtil.setKeyboard(keyboard);
+		
+		this.scence = scence;
+		this.scence.setKeyboard(keyboard);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class ContentCanvas extends Canvas implements Runnable {
 		// before drawing, clear screen
 		clear();
 		// draw the shapes to bufferedImage, by invoking the render method in the stageUtil
-		stageUtil.render(bufferedImageGraphic);
+		scence.render(bufferedImageGraphic);
 		// draw the bufferedImage
 		bufferStrategyGraphic.drawImage(bufferedImage, 0, 0, getWidth(), getHeight(), null);
 		// ******************** render ********************
@@ -76,7 +76,7 @@ public class ContentCanvas extends Canvas implements Runnable {
 	private void update() {
 		// get current key state
 		keyboard.update();
-		stageUtil.update();
+		scence.update();
 	}
 	
 	/**
