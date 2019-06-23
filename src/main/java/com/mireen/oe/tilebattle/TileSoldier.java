@@ -33,15 +33,15 @@ public class TileSoldier extends Actor {
 
 	@Override
 	public void update() {
-		if(keyboard.up)
+		if(keyboard.isPressed && keyboard.lastPressedKey.equalsIgnoreCase("w")) 
 			position.y -= size;
-		if(keyboard.down)
+		if(keyboard.isPressed && keyboard.lastPressedKey.equalsIgnoreCase("s")) 
 			position.y += size;
-		if(keyboard.left)
+		if(keyboard.isPressed && keyboard.lastPressedKey.equalsIgnoreCase("a")) 
 			position.x -= size;
-		if(keyboard.right)
+		if(keyboard.isPressed && keyboard.lastPressedKey.equalsIgnoreCase("d")) 
 			position.x += size;
-			
+		keyboard.lastPressedKey = "";
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import java.awt.image.DataBufferInt;
 
 import com.mireen.oe.basic.Scene;
 import com.mireen.oe.input.Keyboard;
+import com.mireen.oe.input.KeyboardForSLG;
 
 public class ContentCanvas extends Canvas implements Runnable {
 
@@ -29,7 +30,7 @@ public class ContentCanvas extends Canvas implements Runnable {
 		setPreferredSize(ScreenUtils.DIM);
 		setBackground(Color.WHITE);
 		
-		this.keyboard = new Keyboard();
+		this.keyboard = new KeyboardForSLG();
 		addKeyListener(keyboard);
 		
 		this.scence = scence;

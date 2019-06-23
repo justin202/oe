@@ -3,6 +3,7 @@ package com.mireen.oe.basic;
 import java.awt.Graphics;
 
 import com.mireen.oe.input.Keyboard;
+import com.mireen.oe.input.KeyboardForGeneral;
 
 /**
  * the super class of all kind of stage

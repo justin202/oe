@@ -3,6 +3,7 @@ package com.mireen.oe.basic;
 import java.awt.Graphics;
 
 import com.mireen.oe.input.Keyboard;
+import com.mireen.oe.input.KeyboardForSLG;
 
 public class Actor {
 	
@@ -21,7 +22,7 @@ public class Actor {
 	}
 
 	public void setKeyboard(Keyboard keyboard) {
-		this.keyboard = keyboard;
+		this.keyboard = (KeyboardForSLG) keyboard;
 	}
 
 }
